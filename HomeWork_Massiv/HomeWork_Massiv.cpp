@@ -29,7 +29,7 @@ void Left_shift(int mas[], int size)
 
 	for (int i = 0; i < size; i++)
 	{
-		cout << mas[i] << "\t";
+		cout << mas[i] <<"\t";
 
 	}
 }
@@ -85,19 +85,6 @@ int main()
 	default:
 		break;
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }
