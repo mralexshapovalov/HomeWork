@@ -41,7 +41,10 @@ int MaxValueIn(int** array, const int sizeArrayRows, const int sizeArrayCows); /
 double MaxValueIn(double** array, const int sizeArrayRows, const int sizeArrayCows); //âîçâðàùàåò ìàêñèìàëüíîå çíà÷åíèå èç ìàññèâà
 float MaxValueIn(float** array, const int sizeArrayRows, const int sizeArrayCows); //âîçâðàùàåò ìàêñèìàëüíîå çíà÷åíèå èç ìàññèâà
 
-void ShiftLeft(int** array, const int sizeArrayRows, const int sizeArrayCows); //âûïîëíÿåò öèêëè÷åñêèé ñäâèã ìàññèâà íà çàäàííîå ÷èñëî ýëåìåíòîâ âëåâî
+int** ShiftLeft(int** array, const int sizeArrayRows, const int sizeArrayCows); //âûïîëíÿåò öèêëè÷åñêèé ñäâèã ìàññèâà íà çàäàííîå ÷èñëî ýëåìåíòîâ âëåâî
+double** ShiftLeft(double** array, const int sizeArrayRows, const int sizeArrayCows); //âûïîëíÿåò öèêëè÷åñêèé ñäâèã ìàññèâà íà çàäàííîå ÷èñëî ýëåìåíòîâ âëåâî
+float** ShiftLeft(float** array, const int sizeArrayRows, const int sizeArrayCows); //âûïîëíÿåò öèêëè÷åñêèé ñäâèã ìàññèâà íà çàäàííîå ÷èñëî ýëåìåíòîâ âëåâî
+
 void ShiftRight(int** array, const int sizeArrayRows, const int sizeArrayCows); //âûïîëíÿåò öèêëè÷åñêèé ñäâèã ìàññèâà íà çàäàííîå ÷èñëî ýëåìåíòîâ âïðàâî
 
 int** Sort(int** array, const int sizeArrayRows, const int sizeArrayCows); //âûïîëíÿåò ñîðòèðîâêó ìàññèâà â ïîðÿäêå âîçðàñòàíèÿ
@@ -99,9 +102,6 @@ int main()
     cout << "Output of an array with a data type float : " << endl;
     Print(arrayFloat, sizeArrayRows, sizeArrayColumn);
     cout << endl;
-    ShiftLeft(arrayInt, sizeArrayRows, sizeArrayColumn);
-    cout << endl;
-    ShiftRight(arrayInt, sizeArrayRows, sizeArrayColumn);
     cout << "Output of an array with a data type char : " << endl;
     Print(arrayChar, sizeArrayRows, sizeArrayColumn);
     cout << endl;
@@ -116,14 +116,14 @@ int main()
     cout << endl;
 
     cout << "1.Return the sum of the array elements \n"
-        "2.Return the arithmetic mean of the array elements\n"
-        "3.Return the minimum value of the array \n"
-        "4.Return the maximum value of the array\n"
-        "5.Perform a cyclic shift of the array by a specified number of elements to left \n"
-        "6.Perform a cyclic shift of the array by a specified number of elements to right\n"
-        "7.Sort the array through Bubble sorting\n"
-        "8.Fills an array with unique random numbers in a given range\n"
-        "9.Find dublicate values in the array and display them on the screen\n"
+            "2.Return the arithmetic mean of the array elements\n"
+            "3.Return the minimum value of the array \n"
+            "4.Return the maximum value of the array\n"
+            "5.Perform a cyclic shift of the array by a specified number of elements to left \n"
+            "6.Perform a cyclic shift of the array by a specified number of elements to right\n"
+            "7.Sort the array through Bubble sorting\n"
+            "8.Fills an array with unique random numbers in a given range\n"
+            "9.Find dublicate values in the array and display them on the screen\n"
         << endl;
     cout << endl;
 
@@ -163,9 +163,45 @@ int main()
     case 5:
         cout << "5.Perform a cyclic shift of the array by a specified number of elements to left : " << endl;
 
-        ShiftLeft(arrayInt, sizeArrayRows, sizeArrayColumn);
-        Print(arrayInt, sizeArrayRows, sizeArrayColumn);
+        arrayContainerInt = ShiftLeft(arrayInt, sizeArrayRows, sizeArrayColumn);
+        cout << "Type int" << endl;
+        for (int i = 0; i < sizeArrayRows; i++)
+        {
+            for (int j = 0; j < sizeArrayColumn; j++)
+            {
+                cout << arrayContainerInt[i][j] << "  ";
+            }
+            cout << endl;
+
+        }
+
+        
+        arrayContainerDouble = ShiftLeft(arrayDouble, sizeArrayRows, sizeArrayColumn);
+        
+        cout << "Type double" << endl;
+        for (int i = 0; i < sizeArrayRows; i++)
+        {
+            for (int j = 0; j < sizeArrayColumn; j++)
+            {
+            
+                cout << arrayContainerDouble[i][j] << "  ";
  
+            }
+            cout << endl;
+        }
+        cout << endl;
+
+        arrayContainerFloat = ShiftLeft(arrayFloat, sizeArrayRows, sizeArrayColumn);
+        cout << "Type float" << endl;
+        for (int i = 0; i < sizeArrayRows; i++)
+        {
+            for (int j = 0; j < sizeArrayColumn; j++)
+            {
+                cout << arrayContainerFloat[i][j] << "  ";
+            }
+            cout << endl;
+        }
+        cout << endl;
         break;
 
     case 6:
@@ -387,6 +423,7 @@ char** NewArrayChar(const int sizeArrayRows, const int sizeArrayColumn)
 
 void FillRand(int** array, int minValue, int maxValue, const int sizeArrayRows, const int sizeArrayColumn)
 {
+    srand(time(NULL));
 
     if (minValue > maxValue)
     {
@@ -398,7 +435,7 @@ void FillRand(int** array, int minValue, int maxValue, const int sizeArrayRows, 
     }
     if (minValue == maxValue)minValue++;
 
-    srand(time(NULL));
+
 
     for (int i = 0; i < sizeArrayRows; i++)
     {
@@ -413,6 +450,8 @@ void FillRand(int** array, int minValue, int maxValue, const int sizeArrayRows, 
 
 void FillRand(double** array, double minValue, double maxValue, const int sizeArrayRows, const int sizeArrayColumn)
 {
+    srand(time(NULL));
+
     if (minValue > maxValue)
     {
         double buffer = minValue;
@@ -441,6 +480,8 @@ void FillRand(double** array, double minValue, double maxValue, const int sizeAr
 
 void FillRand(float** array, float minValue, float maxValue, const int sizeArrayRows, const int sizeArrayColumn)
 {
+    srand(time(NULL));
+
     if (minValue > maxValue)
     {
         float buffer = minValue;
@@ -466,6 +507,8 @@ void FillRand(float** array, float minValue, float maxValue, const int sizeArray
 
 void FillRand(char** array, int minValue, int maxValue, const int sizeArrayRows, const int sizeArrayColumn)
 {
+    srand(time(NULL));
+
     if (minValue > maxValue)
     {
         int buffer = minValue;
@@ -483,14 +526,12 @@ void FillRand(char** array, int minValue, int maxValue, const int sizeArrayRows,
             array[i][j] = minValue + rand() % (maxValue - minValue);
 
         }
-
     }
 
 }
 
 void Print(int** array, const int sizeArrayRows, const int sizeArrayColumn) //âûâîäèò ìàññèâ íà ýêðàí
 {
-
     for (int i = 0; i < sizeArrayRows; i++)
     {
         for (int j = 0; j < sizeArrayColumn; j++)
@@ -501,7 +542,6 @@ void Print(int** array, const int sizeArrayRows, const int sizeArrayColumn) //â
         }
         cout << endl;
     }
-
 }
 
 void Print(double** array, const int sizeArrayRows, const int sizeArrayColumn) //âûâîäèò ìàññèâ íà ýêðàí
@@ -517,7 +557,6 @@ void Print(double** array, const int sizeArrayRows, const int sizeArrayColumn) /
         }
         cout << endl;
     }
-
 }
 
 void Print(float** array, const int sizeArrayRows, const int sizeArrayColumn) //âûâîäèò ìàññèâ íà ýêðàí
@@ -732,7 +771,6 @@ int MaxValueIn(int** array, const int sizeArrayRows, const int sizeArrayColumn) 
 
 double MaxValueIn(double** array, const int sizeArrayRows, const int sizeArrayColumn) //âîçâðàùàåò ìàêñèìàëüíîå çíà÷åíèå èç ìàññèâà
 {
-
     double minElement = array[0][0];
     int cell = 0;
     int cell1 = 0;
@@ -777,7 +815,33 @@ float MaxValueIn(float** array, const int sizeArrayRows, const int sizeArrayColu
 
 }
 
-void ShiftLeft(int** array, const int sizeArrayRows, const int sizeArrayColumn) //âûïîëíÿåò öèêëè÷åñêèé ñäâèã ìàññèâà íà çàäàííîå ÷èñëî ýëåìåíòîâ âëåâî
+int** ShiftLeft(int** array, const int sizeArrayRows, const int sizeArrayColumn) //âûïîëíÿåò öèêëè÷åñêèé ñäâèã ìàññèâà íà çàäàííîå ÷èñëî ýëåìåíòîâ âëåâî
+{
+    int value;
+
+    cout << "Cycle shift left" << endl;
+    cout << "Enter the number if items : "; cin >> value;
+
+    for (int i = 0; i < value; i++)
+    {
+        for (int j = 0; j < sizeArrayRows; j++)
+        {
+            int temp = array[j][0];
+
+            for (int g = 0; g < sizeArrayColumn-1; g++)
+            {
+
+                array[j][g] = array[j][g + 1];
+            }
+
+            array[j][sizeArrayColumn - 1] = temp;
+        }
+    }
+
+    return array;
+}
+
+double** ShiftLeft(double** array, const int sizeArrayRows, const int sizeArrayColumn) //âûïîëíÿåò öèêëè÷åñêèé ñäâèã ìàññèâà íà çàäàííîå ÷èñëî ýëåìåíòîâ âëåâî
 {
     int value;
 
@@ -792,28 +856,45 @@ void ShiftLeft(int** array, const int sizeArrayRows, const int sizeArrayColumn) 
         {
             int temp = array[j][0];
 
-            for (int g = 0; g < sizeArrayColumn-1; g++)
+            for (int g = 0; g < sizeArrayColumn - 1; g++)
             {
 
                 array[j][g] = array[j][g + 1];
             }
 
             array[j][sizeArrayColumn - 1] = temp;
-           
         }
-      
     }
 
-    for (int i = 0; i < sizeArrayRows; i++)
+    return array;
+}
+
+float** ShiftLeft(float** array, const int sizeArrayRows, const int sizeArrayColumn) //âûïîëíÿåò öèêëè÷åñêèé ñäâèã ìàññèâà íà çàäàííîå ÷èñëî ýëåìåíòîâ âëåâî
+{
+    int value;
+
+    cout << "Cycle shift left" << endl;
+    cout << "Enter the number if items : "; cin >> value;
+
+    for (int i = 0; i < value; i++)
     {
-        for (int j = 0; j < sizeArrayColumn; j++)
 
 
-            cout << array[i][j] << "  ";
+        for (int j = 0; j < sizeArrayRows; j++)
+        {
+            int temp = array[j][0];
 
-        cout << endl;
+            for (int g = 0; g < sizeArrayColumn - 1; g++)
+            {
 
+                array[j][g] = array[j][g + 1];
+            }
+
+            array[j][sizeArrayColumn - 1] = temp;
+        }
     }
+
+    return array;
 }
 
 void ShiftRight(int** array, const int sizeArrayRows, const int sizeArrayColumn) //âûïîëíÿåò öèêëè÷åñêèé ñäâèã ìàññèâà íà çàäàííîå ÷èñëî ýëåìåíòîâ âïðàâî
@@ -837,7 +918,6 @@ void ShiftRight(int** array, const int sizeArrayRows, const int sizeArrayColumn)
        
         }
     }
-
 
     for (int i = 0; i < sizeArrayRows; i++)
     {
