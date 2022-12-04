@@ -15,6 +15,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RecursionFunction", "Recurs
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Two-dimensionalArray", "Two-dimensionalArray\Two-dimensionalArray.vcxproj", "{B88E3511-D653-4335-95DC-5EEC96781D5B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Test", "Test\Test.vcxproj", "{79196812-779E-475B-95FC-BA9787539974}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -71,6 +73,14 @@ Global
 		{B88E3511-D653-4335-95DC-5EEC96781D5B}.Release|x64.Build.0 = Release|x64
 		{B88E3511-D653-4335-95DC-5EEC96781D5B}.Release|x86.ActiveCfg = Release|Win32
 		{B88E3511-D653-4335-95DC-5EEC96781D5B}.Release|x86.Build.0 = Release|Win32
+		{79196812-779E-475B-95FC-BA9787539974}.Debug|x64.ActiveCfg = Debug|x64
+		{79196812-779E-475B-95FC-BA9787539974}.Debug|x64.Build.0 = Debug|x64
+		{79196812-779E-475B-95FC-BA9787539974}.Debug|x86.ActiveCfg = Debug|Win32
+		{79196812-779E-475B-95FC-BA9787539974}.Debug|x86.Build.0 = Debug|Win32
+		{79196812-779E-475B-95FC-BA9787539974}.Release|x64.ActiveCfg = Release|x64
+		{79196812-779E-475B-95FC-BA9787539974}.Release|x64.Build.0 = Release|x64
+		{79196812-779E-475B-95FC-BA9787539974}.Release|x86.ActiveCfg = Release|Win32
+		{79196812-779E-475B-95FC-BA9787539974}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
