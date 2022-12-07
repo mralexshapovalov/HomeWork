@@ -1,141 +1,116 @@
-﻿
-// Arrays.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
-// Arrays.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
-#include <iostream>
+﻿#include <iostream>
 #include <Windows.h>
 
+int** NewArrayInt(const int ROWS, const int COLUMNS);
+double** NewArrayDouble(const int ROWS, const int COLUMNS);
+float** NewArrayFloat(const int ROWS, const int COLUMNS);
+char** NewArrayChar(const int ROWS, const int COLUMNS);
+int** NewArrayInt_2(const int ROWS, const int COLUMNS);
 
-int** NewArrayInt(const int sizeArrayRows, const int sizeArrayCows);
-double** NewArrayDouble(const int sizeArrayRows, const int sizeArrayCows);
-float** NewArrayFloat(const int sizeArrayRows, const int sizeArrayCows);
-char** NewArrayChar(const int sizeArrayRows, const int sizeArrayCows);
-int** NewArrayInt_2(const int sizeArrayRows, const int sizeArrayCows);
+void FillRand(int** array, int minValue, int maxValue, const int ROWS, const int COLUMNS);
+void FillRand(double** array, double minValue, double maxValue, const int ROWS, const int COLUMNS);
+void FillRand(float** array, float minValue, float maxValue, const int ROWS, const int COLUMNS);
+void FillRand(char** array, int minValue, int maxValue, const int ROWS, const int COLUMNS);
 
-void FillRand(int** array, int minValue, int maxValue, const int sizeArrayRows, const int sizeArrayCows);
-void FillRand(double** array, double minValue, double maxValue, const int sizeArrayRows, const int sizeArrayCows);
-void FillRand(float** array, float minValue, float maxValue, const int sizeArrayRows, const int sizeArrayCows);
-void FillRand(char** array, int minValue, int maxValue, const int sizeArrayRows, const int sizeArrayCows);
+void Print(int** array, const int ROWS, const int COLUMNS);
+void Print(double** array, const int ROWS, const int COLUMNS);
+void Print(float** array, const int ROWS, const int COLUMNS);
+void Print(char** array, const int ROWS, const int COLUMNS);
 
-void Print(int** array, const int sizeArrayRows, const int sizeArrayCows); 
-void Print(double** array, const int sizeArrayRows, const int sizeArrayCows); 
-void Print(float** array, const int sizeArrayRows, const int sizeArrayCows); 
-void Print(char** array, const int sizeArrayRows, const int sizeArrayCows); 
+int Sum(int** array, const int ROWS, const int COLUMNS);
+double Sum(double** array, const int ROWS, const int COLUMNS);
+float Sum(float** array, const int ROWS, const int COLUMNS);
 
-int Sum(int** array, const int sizeArrayRows, const int sizeArrayCows); 
-double Sum(double** array, const int sizeArrayRows, const int sizeArrayCows); 
-float Sum(float** array, const int sizeArrayRows, const int sizeArrayCows); 
+int Avg(int** array, const int ROWS, const int COLUMNS);
+double Avg(double**, const int ROWS, const int COLUMNS);
+float Avg(float** array, const int ROWS, const int COLUMNS);
 
-int Avg(int** array, const int sizeArrayRows, const int sizeArrayCows); 
-double Avg(double**, const int sizeArrayRows, const int sizeArrayCows); 
-float Avg(float** array, const int sizeArrayRows, const int sizeArrayCows); 
+int MinValueIn(int** array, const int ROWS, const int COLUMNS);
+double MinValueIn(double** array, const int ROWS, const int COLUMNS);
+float MinValueIn(float** array, const int ROWS, const int COLUMNS);
 
-int MinValueIn(int** array, const int sizeArrayRows, const int sizeArrayCows); 
-double MinValueIn(double** array, const int sizeArrayRows, const int sizeArrayCows); 
-float MinValueIn(float** array, const int sizeArrayRows, const int sizeArrayCows); 
+int MaxValueIn(int** array, const int ROWS, const int COLUMNS);
+double MaxValueIn(double** array, const int ROWS, const int COLUMNS);
+float MaxValueIn(float** array, const int ROWS, const int COLUMNS);
 
-int MaxValueIn(int** array, const int sizeArrayRows, const int sizeArrayCows); 
-double MaxValueIn(double** array, const int sizeArrayRows, const int sizeArrayCows); 
-float MaxValueIn(float** array, const int sizeArrayRows, const int sizeArrayCows); 
+int** ShiftLeft(int** array, const int ROWS, const int COLUMNS);
+double** ShiftLeft(double** array, const int ROWS, const int COLUMNS);
+float** ShiftLeft(float** array, const int ROWS, const int COLUMNS);
 
-int** ShiftLeft(int** array, const int sizeArrayRows, const int sizeArrayCows); 
-double** ShiftLeft(double** array, const int sizeArrayRows, const int sizeArrayCows); 
-float** ShiftLeft(float** array, const int sizeArrayRows, const int sizeArrayCows); 
+int** ShiftRight(int** array, const int ROWS, const int COLUMNS);
+double** ShiftRight(double** array, const int ROWS, const int COLUMNS);
+float** ShiftRight(float** array, const int ROWS, const int COLUMNS);
 
-int** ShiftRight(int** array, const int sizeArrayRows, const int sizeArrayCows);
+int** Sort(int** array, const int ROWS, const int COLUMNS);
+double** Sort(double** array, const int ROWS, const int COLUMNS);
+float** Sort(float** array, const int ROWS, const int COLUMNS);
 
-int** Sort(int** array, const int sizeArrayRows, const int sizeArrayCows); 
-double** Sort(double** array, const int sizeArrayRows, const int sizeArrayCows); 
-float** Sort(float** array, const int sizeArrayRows, const int sizeArrayCows); 
+int** UinqueRand(int** array, int minValue, int maxValue, const int ROWS, const int COLUMNS);
+double** UinqueRand(double** array, int minValue, int maxValue, const int ROWS, const int COLUMNS);
+float** UinqueRand(float** array, int minValue, int maxValue, const int ROWS, const int COLUMNS);
 
-void UinqueRand(int** array, int minValue, int maxValue, const int sizeArrayRows, const int sizeArrayCows);
-
-void Search(int** array, const int sizeArrayRows, const int sizeArrayCows);  
-void Search(double** array, const int sizeArrayRows, const int sizeArrayCows);
-void Search(float** array, const int sizeArrayRows, const int sizeArrayCows);
+void Search(int** array, const int ROWS, const int COLUMNS);
+void Search(double** array, const int ROWS, const int COLUMNS);
+void Search(float** array, const int ROWS, const int COLUMNS);
 
 int main()
 {
 
-    const int sizeArrayRows = 5;
-    const int sizeArrayColumn = 5;
-    int value;
+    const int ROWS = 5;
+    const int COLUMNS = 5;
 
-    int minValue=1; /*std::cout << "Enter the minimum range value - "; std::cin >> minValue;*/
-    int maxValue=100; /*std::cout << "Enter the maximum range value - "; std::cin >> maxValue;*/
+    int value;
+    int minValue; std::cout << "Enter the minimum range value - "; std::cin >> minValue;
+    int maxValue; std::cout << "Enter the maximum range value - "; std::cin >> maxValue;
 
     int** array_2;
-    array_2 = NewArrayInt_2(sizeArrayRows, sizeArrayColumn);
+    array_2 = NewArrayInt_2(ROWS, COLUMNS);
 
     int** arrayInt;
-    arrayInt = NewArrayInt(sizeArrayRows, sizeArrayColumn);
+    arrayInt = NewArrayInt(ROWS, COLUMNS);
 
     double** arrayDouble;
-    arrayDouble = NewArrayDouble(sizeArrayRows, sizeArrayColumn);
+    arrayDouble = NewArrayDouble(ROWS, COLUMNS);
 
     float** arrayFloat;
-    arrayFloat = NewArrayFloat(sizeArrayRows, sizeArrayColumn);
+    arrayFloat = NewArrayFloat(ROWS, COLUMNS);
 
     char** arrayChar;
-    arrayChar = NewArrayChar(sizeArrayRows, sizeArrayColumn);
+    arrayChar = NewArrayChar(ROWS, COLUMNS);
 
     int** arrayContainerInt;
     double** arrayContainerDouble;
     float** arrayContainerFloat;
 
-    FillRand(arrayInt, minValue, maxValue, sizeArrayRows, sizeArrayColumn);
-    FillRand(arrayDouble, minValue, maxValue, sizeArrayRows, sizeArrayColumn);
-    FillRand(arrayFloat, minValue, maxValue, sizeArrayRows, sizeArrayColumn);
-    FillRand(arrayChar, minValue, maxValue, sizeArrayRows, sizeArrayColumn);
+    FillRand(arrayInt, minValue, maxValue, ROWS, COLUMNS);
+    FillRand(arrayDouble, minValue, maxValue, ROWS, COLUMNS);
+    FillRand(arrayFloat, minValue, maxValue, ROWS, COLUMNS);
+    FillRand(arrayChar, minValue, maxValue, ROWS, COLUMNS);
 
     std::cout << "Output of an array with a data type int : " << std::endl;
-    Print(arrayInt, sizeArrayRows, sizeArrayColumn);
-    arrayContainerInt = ShiftRight(arrayInt, sizeArrayRows, sizeArrayColumn);
-    std::cout << "Type int" << std::endl;
-    for (int i = 0; i < sizeArrayRows; i++)
-    {
-        for (int j = 0; j < sizeArrayColumn; j++)
-        {
-            std::cout << arrayContainerInt[i][j] << "  ";
-        }
-        std::cout << std::endl;
-
-    }
+    Print(arrayInt, ROWS, COLUMNS);
     std::cout << std::endl;
-    //std::cout << "Output of an array with a data type double : " << std::endl;
-    //Print(arrayDouble, sizeArrayRows, sizeArrayColumn);
-    //std::cout << std::endl;
-    //std::cout << "Output of an array with a data type float : " << std::endl;
-    //Print(arrayFloat, sizeArrayRows, sizeArrayColumn);
-    //std::cout << std::endl;
-    //std::cout << "Output of an array with a data type char : " << std::endl;
-    //Print(arrayChar, sizeArrayRows, sizeArrayColumn);
-    //std::cout << std::endl;
-    //std::cout << "SEARCH" << std::endl;
-    //Search(arrayInt, sizeArrayRows, sizeArrayColumn);
-    //std::cout << std::endl;
-    //std::cout << std::endl;
-    //Search(arrayDouble, sizeArrayRows, sizeArrayColumn);
-    //std::cout << std::endl;
-    //std::cout << std::endl;
-    //Search(arrayFloat, sizeArrayRows, sizeArrayColumn);
-    //std::cout << std::endl;
+    std::cout << "Output of an array with a data type double : " << std::endl;
+    Print(arrayDouble, ROWS, COLUMNS);
+    std::cout << std::endl;
+    std::cout << "Output of an array with a data type float : " << std::endl;
+    Print(arrayFloat, ROWS, COLUMNS);
+    std::cout << std::endl;
+    std::cout << "Output of an array with a data type char : " << std::endl;
+    Print(arrayChar, ROWS, COLUMNS);
+    std::cout << std::endl;
 
-    //std::cout << "1.Return the sum of the array elements \n"
-    //        "2.Return the arithmetic mean of the array elements\n"
-    //        "3.Return the minimum value of the array \n"
-    //        "4.Return the maximum value of the array\n"
-    //        "5.Perform a cyclic shift of the array by a specified number of elements to left \n"
-    //        "6.Perform a cyclic shift of the array by a specified number of elements to right\n"
-    //        "7.Sort the array through Bubble sorting\n"
-    //        "8.Fills an array with unique random numbers in a given range\n"
-    //        "9.Find dublicate values in the array and display them on the screen\n"
-    //    << std::endl;
-    //std::cout << std::endl;
-
+    std::cout << "1.Return the sum of the array elements \n"
+        "2.Return the arithmetic mean of the array elements\n"
+        "3.Return the minimum value of the array \n"
+        "4.Return the maximum value of the array\n"
+        "5.Perform a cyclic shift of the array by a specified number of elements to left \n"
+        "6.Perform a cyclic shift of the array by a specified number of elements to right\n"
+        "7.Sort the array through Bubble sorting\n"
+        "8.Fills an array with unique random numbers in a given range\n"
+        "9.Find dublicate values in the array and display them on the screen\n"
+        << std::endl;
+    std::cout << std::endl;
     std::cout << "Select an action : ";  std::cin >> value;
 
     switch (value)
@@ -143,67 +118,65 @@ int main()
 
     case 1:
         std::cout << "Sum of the array elements : " << std::endl;
-        std::cout << "int    : " << Sum(arrayInt, sizeArrayRows, sizeArrayColumn) << std::endl;
-        std::cout << "double : " << Sum(arrayDouble, sizeArrayRows, sizeArrayColumn) << std::endl;
-        std::cout << "float  : " << Sum(arrayFloat, sizeArrayRows, sizeArrayColumn) << std::endl;
+        std::cout << "int    : " << Sum(arrayInt, ROWS, COLUMNS) << std::endl;
+        std::cout << "double : " << Sum(arrayDouble, ROWS, COLUMNS) << std::endl;
+        std::cout << "float  : " << Sum(arrayFloat, ROWS, COLUMNS) << std::endl;
         break;
 
     case 2:
         std::cout << "Arithmetic mean of the array elements :" << std::endl;
-        std::cout << "int    : " << Avg(arrayInt, sizeArrayRows, sizeArrayColumn) << std::endl;
-        std::cout << "double : " << Avg(arrayDouble, sizeArrayRows, sizeArrayColumn) << std::endl;
-        std::cout << "float  : " << Avg(arrayFloat, sizeArrayRows, sizeArrayColumn) << std::endl;
+        std::cout << "int    : " << Avg(arrayInt, ROWS, COLUMNS) << std::endl;
+        std::cout << "double : " << Avg(arrayDouble, ROWS, COLUMNS) << std::endl;
+        std::cout << "float  : " << Avg(arrayFloat, ROWS, COLUMNS) << std::endl;
         break;
 
     case 3:
         std::cout << "Minimum value of the array : " << std::endl;
-        std::cout << "int    : " << MinValueIn(arrayInt, sizeArrayRows, sizeArrayColumn) << std::endl;
-        std::cout << "double : " << MinValueIn(arrayDouble, sizeArrayRows, sizeArrayColumn) << std::endl;
-        std::cout << "float  : " << MinValueIn(arrayFloat, sizeArrayRows, sizeArrayColumn) << std::endl;
+        std::cout << "int    : " << MinValueIn(arrayInt, ROWS, COLUMNS) << std::endl;
+        std::cout << "double : " << MinValueIn(arrayDouble, ROWS, COLUMNS) << std::endl;
+        std::cout << "float  : " << MinValueIn(arrayFloat, ROWS, COLUMNS) << std::endl;
         break;
 
     case 4:
         std::cout << "Maximum value of the array : " << std::endl;
-        std::cout << "int    : " << MaxValueIn(arrayInt, sizeArrayRows, sizeArrayColumn) << std::endl;
-        std::cout << "double : " << MaxValueIn(arrayDouble, sizeArrayRows, sizeArrayColumn) << std::endl;
-        std::cout << "float  : " << MaxValueIn(arrayFloat, sizeArrayRows, sizeArrayColumn) << std::endl;
+        std::cout << "int    : " << MaxValueIn(arrayInt, ROWS, COLUMNS) << std::endl;
+        std::cout << "double : " << MaxValueIn(arrayDouble, ROWS, COLUMNS) << std::endl;
+        std::cout << "float  : " << MaxValueIn(arrayFloat, ROWS, COLUMNS) << std::endl;
         break;
 
     case 5:
         std::cout << "5.Perform a cyclic shift of the array by a specified number of elements to left : " << std::endl;
-
-        arrayContainerInt = ShiftLeft(arrayInt, sizeArrayRows, sizeArrayColumn);
+        arrayContainerInt = ShiftLeft(arrayInt, ROWS, COLUMNS);
         std::cout << "Type int" << std::endl;
-        for (int i = 0; i < sizeArrayRows; i++)
+        for (int i = 0; i < ROWS; i++)
         {
-            for (int j = 0; j < sizeArrayColumn; j++)
+            for (int j = 0; j < COLUMNS; j++)
             {
                 std::cout << arrayContainerInt[i][j] << "  ";
             }
             std::cout << std::endl;
 
         }
-        
-        arrayContainerDouble = ShiftLeft(arrayDouble, sizeArrayRows, sizeArrayColumn);
-        
+
+        arrayContainerDouble = ShiftLeft(arrayDouble, ROWS, COLUMNS);
         std::cout << "Type double" << std::endl;
-        for (int i = 0; i < sizeArrayRows; i++)
+        for (int i = 0; i < ROWS; i++)
         {
-            for (int j = 0; j < sizeArrayColumn; j++)
+            for (int j = 0; j < COLUMNS; j++)
             {
-            
+
                 std::cout << arrayContainerDouble[i][j] << "  ";
- 
+
             }
             std::cout << std::endl;
         }
         std::cout << std::endl;
 
-        arrayContainerFloat = ShiftLeft(arrayFloat, sizeArrayRows, sizeArrayColumn);
+        arrayContainerFloat = ShiftLeft(arrayFloat, ROWS, COLUMNS);
         std::cout << "Type float" << std::endl;
-        for (int i = 0; i < sizeArrayRows; i++)
+        for (int i = 0; i < ROWS; i++)
         {
-            for (int j = 0; j < sizeArrayColumn; j++)
+            for (int j = 0; j < COLUMNS; j++)
             {
                 std::cout << arrayContainerFloat[i][j] << "  ";
             }
@@ -214,12 +187,22 @@ int main()
 
     case 6:
         std::cout << "6.Perform a cyclic shift of the array by a specified number of elements to right :" << std::endl;
-       
-        arrayContainerInt = ShiftRight(arrayInt, sizeArrayRows, sizeArrayColumn);
+        arrayContainerInt = ShiftRight(arrayInt, ROWS, COLUMNS);
         std::cout << "Type int" << std::endl;
-        for (int i = 0; i < sizeArrayRows; i++)
+        for (int i = 0; i < ROWS; i++)
         {
-            for (int j = 0; j < sizeArrayColumn; j++)
+            for (int j = 0; j < COLUMNS; j++)
+            {
+                std::cout << arrayContainerInt[i][j] << "  ";
+            }
+            std::cout << std::endl;
+        }
+
+        arrayContainerDouble = ShiftRight(arrayDouble, ROWS, COLUMNS);
+        std::cout << "Type int" << std::endl;
+        for (int i = 0; i < ROWS; i++)
+        {
+            for (int j = 0; j < COLUMNS; j++)
             {
                 std::cout << arrayContainerInt[i][j] << "  ";
             }
@@ -227,27 +210,29 @@ int main()
 
         }
 
-        
+        arrayContainerFloat = ShiftRight(arrayFloat, ROWS, COLUMNS);
+        std::cout << "Type int" << std::endl;
+        for (int i = 0; i < ROWS; i++)
+        {
+            for (int j = 0; j < COLUMNS; j++)
+            {
+                std::cout << arrayContainerInt[i][j] << "  ";
+            }
+            std::cout << std::endl;
+
+        }
+
+
         break;
 
     case 7:
         std::cout << "7.Sort the array through Bubble sorting :" << std::endl;
 
-       /* arrayContainerInt = Sort(arrayInt, sizeArrayRows, sizeArrayColumn);
-        cout << "Type int" << endl;
-        for (int i = 0; i < sizeArrayRows; i++)
-        {
-            for (int j = 0; j < sizeArrayColumn; j++)
-            {
-                cout << arrayContainerInt[i][j] << "  ";
-            }
-            cout << endl;
-        }*/
-        arrayContainerInt= Sort(arrayInt, sizeArrayRows, sizeArrayColumn);
+        arrayContainerInt = Sort(arrayInt, ROWS, COLUMNS);
         std::cout << "Type int" << std::endl;
-        for (int i = 0; i < sizeArrayRows; i++)
+        for (int i = 0; i < ROWS; i++)
         {
-            for (int j = 0; j < sizeArrayColumn; j++)
+            for (int j = 0; j < COLUMNS; j++)
             {
                 std::cout << arrayContainerInt[i][j] << "  ";
             }
@@ -255,27 +240,11 @@ int main()
 
         }
 
-        std::cout << Sort(arrayInt, sizeArrayRows, sizeArrayColumn) << "\t";
-
-
-        for (int i = 0; i < sizeArrayRows; i++)
-        {
-            for (int j = 0; j < sizeArrayColumn; j++)
-            {
-                std::cout << Sort(arrayInt, sizeArrayRows, sizeArrayColumn) << "\t";
-            }
-            std::cout << std::endl;
-
-        }
-
-
-        std::cout << std::endl;
-
-        arrayContainerDouble = Sort(arrayDouble, sizeArrayRows, sizeArrayColumn);
+        arrayContainerDouble = Sort(arrayDouble, ROWS, COLUMNS);
         std::cout << "Type double" << std::endl;
-        for (int i = 0; i < sizeArrayRows; i++)
+        for (int i = 0; i < ROWS; i++)
         {
-            for (int j = 0; j < sizeArrayColumn; j++)
+            for (int j = 0; j < COLUMNS; j++)
             {
                 std::cout << arrayContainerDouble[i][j] << "  ";
             }
@@ -283,11 +252,11 @@ int main()
         }
         std::cout << std::endl;
 
-        arrayContainerFloat = Sort(arrayFloat, sizeArrayRows, sizeArrayColumn);
-        std::cout << "Type float" << std::endl;
-        for (int i = 0; i < sizeArrayRows; i++)
+        arrayContainerFloat = Sort(arrayFloat, ROWS, COLUMNS);
+        std::cout << "Type float" << "\n";
+        for (int i = 0; i < ROWS; i++)
         {
-            for (int j = 0; j < sizeArrayColumn; j++)
+            for (int j = 0; j < COLUMNS; j++)
             {
                 std::cout << arrayContainerFloat[i][j] << "  ";
             }
@@ -302,140 +271,154 @@ int main()
         std::cout << "Enter the minimum range value - "; std::cin >> minValue;
         std::cout << "Enter the maximum range value - "; std::cin >> maxValue;
 
-        UinqueRand(arrayInt, minValue, maxValue, sizeArrayRows, sizeArrayColumn);
-        /*      cout << "Type int" << endl;
-              for (int i = 0; i < sizeArrayRows; i++)
-              {
-                  for (int j = 0; j < sizeArrayColumn; j++)
-                  {
-                      cout << arrayContainerInt[i][j] << "  ";
-                  }
-                  cout << endl;
-              }
-              cout << endl;
-              */
+        arrayContainerInt = UinqueRand(arrayInt, minValue, maxValue, ROWS, COLUMNS);
+        std::cout << "Type int" << std::endl;
+        for (int i = 0; i < ROWS; i++)
+        {
+            for (int j = 0; j < COLUMNS; j++)
+            {
+                std::cout << arrayContainerInt[i][j] << "  ";
+            }
+            std::cout << std::endl;
+
+        }
+
+        arrayContainerDouble = UinqueRand(arrayDouble, minValue, maxValue, ROWS, COLUMNS);
+        std::cout << "Type double" << std::endl;
+        for (int i = 0; i < ROWS; i++)
+        {
+            for (int j = 0; j < COLUMNS; j++)
+            {
+                std::cout << arrayContainerDouble[i][j] << "  ";
+            }
+            std::cout << std::endl;
+        }
+        std::cout << std::endl;
+
+        arrayContainerFloat = UinqueRand(arrayFloat, minValue, maxValue, ROWS, COLUMNS);
+        std::cout << "Type float" << "\n";
+        for (int i = 0; i < ROWS; i++)
+        {
+            for (int j = 0; j < COLUMNS; j++)
+            {
+                std::cout << arrayContainerFloat[i][j] << "  ";
+            }
+            std::cout << std::endl;
+        }
+        std::cout << std::endl;
         break;
 
     case 9:
         std::cout << "9.Find dublicate values in the array and display them on the screen " << std::endl;
-
-      
         std::cout << "Type int" << std::endl;
-        Search(arrayInt, sizeArrayRows, sizeArrayColumn);
+        Search(arrayInt, ROWS, COLUMNS);
         std::cout << std::endl;
         std::cout << "Type double" << std::endl;
         std::cout << std::endl;
-        Search(arrayDouble, sizeArrayRows, sizeArrayColumn);
+        Search(arrayDouble, ROWS, COLUMNS);
         std::cout << "Type float" << std::endl;
-        Search(arrayFloat, sizeArrayRows, sizeArrayColumn);
+        Search(arrayFloat, ROWS, COLUMNS);
 
-       
+
         break;
 
     default:
         break;
     }
 
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < ROWS; i++)
     {
         delete[] arrayInt[i];
     }
-    for (int i = 0; i < 10; i++)
+
+    for (int i = 0; i < ROWS; i++)
     {
         delete[] arrayDouble[i];
     }
-    for (int i = 0; i < 10; i++)
+
+    for (int i = 0; i < ROWS; i++)
     {
         delete[] arrayFloat[i];
     }
-    for (int i = 0; i < 10; i++)
+
+    for (int i = 0; i < ROWS; i++)
     {
         delete[] arrayChar[i];
     }
 
 }
 
-int** NewArrayInt(int sizeArrayRows, int sizeArrayColumn)
+int** NewArrayInt(int ROWS, int COLUMNS)
 {
     int** valueArray;
 
-    valueArray = new int* [sizeArrayRows];
+    valueArray = new int* [ROWS];
 
-    for (int i = 0; i < sizeArrayRows; i++)
+    for (int i = 0; i < ROWS; i++)
     {
-
-        valueArray[i] = new int[sizeArrayColumn];
-
+        valueArray[i] = new int[COLUMNS];
     }
 
     return valueArray;
 }
 
-int** NewArrayInt_2(int sizeArrayRows, int sizeArrayColumn)
+int** NewArrayInt_2(int ROWS, int COLUMNS)
 {
     int** valueArray;
 
-    valueArray = new int* [sizeArrayRows];
+    valueArray = new int* [ROWS];
 
-    for (int i = 0; i < sizeArrayRows; i++)
+    for (int i = 0; i < ROWS; i++)
     {
-
-        valueArray[i] = new int[sizeArrayColumn];
-
+        valueArray[i] = new int[COLUMNS];
     }
 
     return valueArray;
 }
 
-double** NewArrayDouble(const int sizeArrayRows, const int sizeArrayColumn)
+double** NewArrayDouble(const int ROWS, const int COLUMNS)
 {
     double** valueArray;
 
-    valueArray = new double* [sizeArrayRows];
+    valueArray = new double* [ROWS];
 
-    for (int i = 0; i < sizeArrayRows; i++)
+    for (int i = 0; i < ROWS; i++)
     {
-
-        valueArray[i] = new double[sizeArrayColumn];
-
+        valueArray[i] = new double[COLUMNS];
     }
 
     return valueArray;
 }
 
-float** NewArrayFloat(const int sizeArrayRows, const int sizeArrayColumn)
+float** NewArrayFloat(const int ROWS, const int COLUMNS)
 {
     float** valueArray;
 
-    valueArray = new float* [sizeArrayRows];
+    valueArray = new float* [ROWS];
 
-    for (int i = 0; i < sizeArrayRows; i++)
+    for (int i = 0; i < ROWS; i++)
     {
-
-        valueArray[i] = new float[sizeArrayColumn];
-
+        valueArray[i] = new float[COLUMNS];
     }
 
     return valueArray;
 }
 
-char** NewArrayChar(const int sizeArrayRows, const int sizeArrayColumn)
+char** NewArrayChar(const int ROWS, const int COLUMNS)
 {
     char** valueArray;
 
-    valueArray = new char* [sizeArrayRows];
+    valueArray = new char* [ROWS];
 
-    for (int i = 0; i < sizeArrayRows; i++)
+    for (int i = 0; i < ROWS; i++)
     {
-
-        valueArray[i] = new char[sizeArrayColumn];
-
+        valueArray[i] = new char[COLUMNS];
     }
 
     return valueArray;
 }
 
-void FillRand(int** array, int minValue, int maxValue, const int sizeArrayRows, const int sizeArrayColumn)
+void FillRand(int** array, int minValue, int maxValue, const int ROWS, const int COLUMNS)
 {
     srand(time(NULL));
 
@@ -444,57 +427,46 @@ void FillRand(int** array, int minValue, int maxValue, const int sizeArrayRows, 
         int buffer = minValue;
         minValue = maxValue;
         maxValue = buffer;
-
-
     }
     if (minValue == maxValue)
         minValue++;
 
-
-
-    for (int i = 0; i < sizeArrayRows; i++)
+    for (int i = 0; i < ROWS; i++)
     {
-        for (int j = 0; j < sizeArrayColumn; j++)
+        for (int j = 0; j < COLUMNS; j++)
         {
             array[i][j] = minValue + rand() % int(maxValue - minValue);
-
         }
     }
-
 }
 
-void FillRand(double** array, double minValue, double maxValue, const int sizeArrayRows, const int sizeArrayColumn)
+void FillRand(double** array, double minValue, double maxValue, const int ROWS, const int COLUMNS)
 {
     srand(time(NULL));
+
+    maxValue *= 100;
+    minValue *= 100;
 
     if (minValue > maxValue)
     {
         double buffer = minValue;
         minValue = maxValue;
         maxValue = buffer;
-
-
     }
     if (minValue == maxValue)
         minValue++;
 
-
-    maxValue *= 100;
-    minValue *= 100;
-
-    for (int i = 0; i < sizeArrayRows; i++)
+    for (int i = 0; i < ROWS; i++)
     {
-        for (int j = 0; j < sizeArrayColumn; j++)
+        for (int j = 0; j < COLUMNS; j++)
         {
             array[i][j] = minValue + rand() % int(maxValue - minValue);
             array[i][j] /= 100;
         }
-
     }
-
 }
 
-void FillRand(float** array, float minValue, float maxValue, const int sizeArrayRows, const int sizeArrayColumn)
+void FillRand(float** array, float minValue, float maxValue, const int ROWS, const int COLUMNS)
 {
     srand(time(NULL));
 
@@ -511,18 +483,17 @@ void FillRand(float** array, float minValue, float maxValue, const int sizeArray
     maxValue *= 100;
     minValue *= 100;
 
-    for (int i = 0; i < sizeArrayRows; i++)
+    for (int i = 0; i < ROWS; i++)
     {
-        for (int j = 0; j < sizeArrayColumn; j++)
+        for (int j = 0; j < COLUMNS; j++)
         {
             array[i][j] = minValue + rand() % int(maxValue - minValue);
             array[i][j] /= 100;
         }
-
     }
 }
 
-void FillRand(char** array, int minValue, int maxValue, const int sizeArrayRows, const int sizeArrayColumn)
+void FillRand(char** array, int minValue, int maxValue, const int ROWS, const int COLUMNS)
 {
     srand(time(NULL));
 
@@ -531,185 +502,159 @@ void FillRand(char** array, int minValue, int maxValue, const int sizeArrayRows,
         int buffer = minValue;
         minValue = maxValue;
         maxValue = buffer;
-
-
     }
-    if (minValue == maxValue)minValue++;
+    if (minValue == maxValue)
+        minValue++;
 
-    for (int i = 0; i < sizeArrayRows; i++)
+    for (int i = 0; i < ROWS; i++)
     {
-        for (int j = 0; j < sizeArrayColumn; j++)
+        for (int j = 0; j < COLUMNS; j++)
         {
             array[i][j] = minValue + rand() % (maxValue - minValue);
-
         }
     }
-
 }
 
-void Print(int** array, const int sizeArrayRows, const int sizeArrayColumn) 
+void Print(int** array, const int ROWS, const int COLUMNS)
 {
-    for (int i = 0; i < sizeArrayRows; i++)
+    for (int i = 0; i < ROWS; i++)
     {
-        for (int j = 0; j < sizeArrayColumn; j++)
+        for (int j = 0; j < COLUMNS; j++)
         {
-
             std::cout << array[i][j] << "  ";
-
         }
         std::cout << std::endl;
     }
 }
 
-void Print(double** array, const int sizeArrayRows, const int sizeArrayColumn) 
+void Print(double** array, const int ROWS, const int COLUMNS)
 {
-
-    for (int i = 0; i < sizeArrayRows; i++)
+    for (int i = 0; i < ROWS; i++)
     {
-        for (int j = 0; j < sizeArrayColumn; j++)
+        for (int j = 0; j < COLUMNS; j++)
         {
-
             std::cout << array[i][j] << "  ";
-
         }
         std::cout << std::endl;
     }
 }
 
-void Print(float** array, const int sizeArrayRows, const int sizeArrayColumn) 
+void Print(float** array, const int ROWS, const int COLUMNS)
 {
-
-    for (int i = 0; i < sizeArrayRows; i++)
+    for (int i = 0; i < ROWS; i++)
     {
-        for (int j = 0; j < sizeArrayColumn; j++)
+        for (int j = 0; j < COLUMNS; j++)
         {
-
             std::cout << array[i][j] << "  ";
-
         }
         std::cout << std::endl;
     }
-
 }
 
-void Print(char** array, const int sizeArrayRows, const int sizeArrayColumn) 
+void Print(char** array, const int ROWS, const int COLUMNS)
 {
-
-    for (int i = 0; i < sizeArrayRows; i++)
+    for (int i = 0; i < ROWS; i++)
     {
-        for (int j = 0; j < sizeArrayColumn; j++)
+        for (int j = 0; j < COLUMNS; j++)
         {
-
             std::cout << array[i][j] << "  ";
-
         }
         std::cout << std::endl;
     }
-
 }
 
-int  Sum(int** array, const int sizeArrayRows, const int sizeArrayColumn) 
+int  Sum(int** array, const int ROWS, const int COLUMNS)
 {
     int sum = 0;
-    for (int i = 0; i < sizeArrayRows; i++)
-        for (int j = 0; j < sizeArrayColumn; j++)
+    for (int i = 0; i < ROWS; i++)
+        for (int j = 0; j < COLUMNS; j++)
 
             sum += array[i][j];
 
     return sum;
 }
 
-double  Sum(double** array, const int sizeArrayRows, const int sizeArrayColumn) 
+double  Sum(double** array, const int ROWS, const int COLUMNS)
 {
     double sum = 0.0;
-    for (int i = 0; i < sizeArrayRows; i++)
-        for (int j = 0; j < sizeArrayColumn; j++)
+    for (int i = 0; i < ROWS; i++)
+        for (int j = 0; j < COLUMNS; j++)
 
             sum += array[i][j];
 
     return sum;
 }
 
-float  Sum(float** array, const int sizeArrayRows, const int sizeArrayColumn) 
+float  Sum(float** array, const int ROWS, const int COLUMNS)
 {
     float sum = 0.0f;
-    for (int i = 0; i < sizeArrayRows; i++)
-        for (int j = 0; j < sizeArrayColumn; j++)
+    for (int i = 0; i < ROWS; i++)
+        for (int j = 0; j < COLUMNS; j++)
 
             sum += array[i][j];
 
     return sum;
 }
 
-int Avg(int** array, const int sizeArrayRows, const int sizeArrayColumn) 
+int Avg(int** array, const int ROWS, const int COLUMNS)
 {
-
     int temp = 0;
     int sumElemnts = 0;
-    for (int i = 0; i < sizeArrayRows; i++)
+    for (int i = 0; i < ROWS; i++)
     {
-        for (int j = 0; j < sizeArrayColumn; j++)
+        for (int j = 0; j < COLUMNS; j++)
         {
             temp += array[i][j];
-            sumElemnts = temp / (sizeArrayRows * sizeArrayColumn);
-
+            sumElemnts = temp / (ROWS * COLUMNS);
         }
     }
 
     return sumElemnts;
 }
 
-double Avg(double** array, int sizeArrayRows, const int sizeArrayColumn) 
+double Avg(double** array, int ROWS, const int COLUMNS)
 {
-
     double temp = 0.0;
     double sumElemnts = 0.0;
-    for (int i = 0; i < sizeArrayRows; i++)
+    for (int i = 0; i < ROWS; i++)
     {
-        for (int j = 0; j < sizeArrayColumn; j++)
+        for (int j = 0; j < COLUMNS; j++)
         {
             temp += array[i][j];
-            sumElemnts = temp / (sizeArrayRows * sizeArrayColumn);
+            sumElemnts = temp / (ROWS * COLUMNS);
         }
     }
 
     return sumElemnts;
 }
 
-float Avg(float** array, const int sizeArrayRows, const int sizeArrayColumn)
+float Avg(float** array, const int ROWS, const int COLUMNS)
 {
-
     float temp = 0.0;
     float sumElemnts = 0.0;
-    for (int i = 0; i < sizeArrayRows; i++)
+    for (int i = 0; i < ROWS; i++)
     {
-        for (int j = 0; j < sizeArrayColumn; j++)
+        for (int j = 0; j < COLUMNS; j++)
         {
             temp += array[i][j];
-            sumElemnts = temp / (sizeArrayRows * sizeArrayColumn);
-
+            sumElemnts = temp / (ROWS * COLUMNS);
         }
     }
 
     return sumElemnts;
 }
 
-int MinValueIn(int** array, const int sizeArrayRows, const int sizeArrayColumn) 
+int MinValueIn(int** array, const int ROWS, const int COLUMNS)
 {
-
     int minElement = array[0][0];
-    int cell = 0;
-    int cell1 = 0;
-    for (int i = 0; i < sizeArrayRows; i++)
-    {
-        for (int j = 0; j < sizeArrayColumn; j++)
-        {
 
+    for (int i = 0; i < ROWS; i++)
+    {
+        for (int j = 0; j < COLUMNS; j++)
+        {
             if (array[i][j] < minElement)
             {
-                cell = i;
-                cell1 = j;
-                minElement = array[cell][cell1];
+                minElement = array[i][j];
             }
         }
     }
@@ -717,90 +662,17 @@ int MinValueIn(int** array, const int sizeArrayRows, const int sizeArrayColumn)
     return minElement;
 }
 
-double MinValueIn(double** array, const int sizeArrayRows, const int sizeArrayColumn) 
-{
-
-    double minElement = array[0][0];
-    int cell = 0;
-    int cell1 = 0;
-    for (int i = 0; i < sizeArrayRows; i++)
-    {
-        for (int j = 0; j < sizeArrayColumn; j++)
-        {
-
-            if (array[i][j] < minElement)
-            {
-                cell = i;
-                cell1 = j;
-                minElement = array[cell][cell1];
-            }
-        }
-    }
-
-    return minElement;
-}
-
-float MinValueIn(float** array, const int sizeArrayRows, const int sizeArrayColumn) 
-{
-
-    float minElement = array[0][0];
-    int cell = 0;
-    int cell1 = 0;
-    for (int i = 0; i < sizeArrayRows; i++)
-    {
-        for (int j = 0; j < sizeArrayColumn; j++)
-        {
-
-            if (array[i][j] < minElement)
-            {
-                cell = i;
-                cell1 = j;
-                minElement = array[cell][cell1];
-            }
-        }
-    }
-
-    return minElement;
-}
-
-int MaxValueIn(int** array, const int sizeArrayRows, const int sizeArrayColumn) 
-{
-
-    int minElement = array[0][0];
-    int cell = 0;
-    int cell1 = 0;
-    for (int i = 0; i < sizeArrayRows; i++)
-    {
-        for (int j = 0; j < sizeArrayColumn; j++)
-        {
-
-            if (array[i][j] > minElement)
-            {
-                cell = i;
-                cell1 = j;
-                minElement = array[cell][cell1];
-            }
-        }
-    }
-
-    return minElement;
-}
-
-double MaxValueIn(double** array, const int sizeArrayRows, const int sizeArrayColumn) 
+double MinValueIn(double** array, const int ROWS, const int COLUMNS)
 {
     double minElement = array[0][0];
-    int cell = 0;
-    int cell1 = 0;
-    for (int i = 0; i < sizeArrayRows; i++)
-    {
-        for (int j = 0; j < sizeArrayColumn; j++)
-        {
 
-            if (array[i][j] > minElement)
+    for (int i = 0; i < ROWS; i++)
+    {
+        for (int j = 0; j < COLUMNS; j++)
+        {
+            if (array[i][j] < minElement)
             {
-                cell = i;
-                cell1 = j;
-                minElement = array[cell][cell1];
+                minElement = array[i][j];
             }
         }
     }
@@ -808,22 +680,17 @@ double MaxValueIn(double** array, const int sizeArrayRows, const int sizeArrayCo
     return minElement;
 }
 
-float MaxValueIn(float** array, const int sizeArrayRows, const int sizeArrayColumn) 
+float MinValueIn(float** array, const int ROWS, const int COLUMNS)
 {
-
     float minElement = array[0][0];
-    int cell = 0;
-    int cell1 = 0;
-    for (int i = 0; i < sizeArrayRows; i++)
-    {
-        for (int j = 0; j < sizeArrayColumn; j++)
-        {
 
-            if (array[i][j] > minElement)
+    for (int i = 0; i < ROWS; i++)
+    {
+        for (int j = 0; j < COLUMNS; j++)
+        {
+            if (array[i][j] < minElement)
             {
-                cell = i;
-                cell1 = j;
-                minElement = array[cell][cell1];
+                minElement = array[i][j];
             }
         }
     }
@@ -831,34 +698,87 @@ float MaxValueIn(float** array, const int sizeArrayRows, const int sizeArrayColu
     return minElement;
 }
 
-int** ShiftLeft(int** array, const int sizeArrayRows, const int sizeArrayColumn) 
+int MaxValueIn(int** array, const int ROWS, const int COLUMNS)
+{
+    int minElement = array[0][0];
+
+    for (int i = 0; i < ROWS; i++)
+    {
+        for (int j = 0; j < COLUMNS; j++)
+        {
+            if (array[i][j] > minElement)
+            {
+                minElement = array[i][j];
+            }
+        }
+    }
+
+    return minElement;
+}
+
+double MaxValueIn(double** array, const int ROWS, const int COLUMNS)
+{
+    double minElement = array[0][0];
+
+    for (int i = 0; i < ROWS; i++)
+    {
+        for (int j = 0; j < COLUMNS; j++)
+        {
+            if (array[i][j] > minElement)
+            {
+                minElement = array[i][j];
+            }
+        }
+    }
+
+    return minElement;
+}
+
+float MaxValueIn(float** array, const int ROWS, const int COLUMNS)
+{
+    float minElement = array[0][0];
+
+    for (int i = 0; i < ROWS; i++)
+    {
+        for (int j = 0; j < COLUMNS; j++)
+        {
+            if (array[i][j] > minElement)
+            {
+                minElement = array[i][j];
+            }
+        }
+    }
+
+    return minElement;
+}
+
+int** ShiftLeft(int** array, const int ROWS, const int COLUMNS)
 {
     int value;
 
     std::cout << "Cycle shift left" << std::endl;
     std::cout << "Enter the number if items : "; std::cin >> value;
-    
+
     for (int k = 0; k < value; k++)
     {
-
-        for (int i = 0; i < sizeArrayRows; i++)
+        for (int i = 0; i < ROWS; i++)
         {
             int buffer = array[i][0];
 
-            for (int j = 0; j < sizeArrayColumn - 1; j++)
+            for (int j = 0; j < COLUMNS - 1; j++)
             {
 
                 array[i][j] = array[i][j + 1];
             }
 
-            array[i][sizeArrayColumn - 1] = buffer;
+            array[i][COLUMNS - 1] = buffer;
         }
     }
 
     return array;
 }
 
-double** ShiftLeft(double** array, const int sizeArrayRows, const int sizeArrayColumn) 
+double** ShiftLeft(double** array, const int ROWS, const int COLUMNS)
 {
     int value;
 
@@ -867,25 +787,24 @@ double** ShiftLeft(double** array, const int sizeArrayRows, const int sizeArrayC
 
     for (int k = 0; k < value; k++)
     {
-
-        for (int i = 0; i < sizeArrayRows; i++)
+        for (int i = 0; i < ROWS; i++)
         {
             double buffer = array[i][0];
 
-            for (int j = 0; j < sizeArrayColumn - 1; j++)
+            for (int j = 0; j < COLUMNS - 1; j++)
             {
 
                 array[i][j] = array[i][j + 1];
             }
 
-            array[i][sizeArrayColumn - 1] = buffer;
+            array[i][COLUMNS - 1] = buffer;
         }
     }
 
     return array;
 }
 
-float** ShiftLeft(float** array, const int sizeArrayRows, const int sizeArrayColumn) 
+float** ShiftLeft(float** array, const int ROWS, const int COLUMNS)
 {
     int value;
 
@@ -894,25 +813,23 @@ float** ShiftLeft(float** array, const int sizeArrayRows, const int sizeArrayCol
 
     for (int k = 0; k < value; k++)
     {
-
-        for (int i = 0; i < sizeArrayRows; i++)
+        for (int i = 0; i < ROWS; i++)
         {
             float buffer = array[i][0];
 
-            for (int j = 0; j < sizeArrayColumn - 1; j++)
+            for (int j = 0; j < COLUMNS - 1; j++)
             {
-
                 array[i][j] = array[i][j + 1];
             }
 
-            array[i][sizeArrayColumn - 1] = buffer;
+            array[i][COLUMNS - 1] = buffer;
         }
     }
 
     return array;
 }
 
-int** ShiftRight(int** array, const int sizeArrayRows, const int sizeArrayColumn)
+int** ShiftRight(int** array, const int ROWS, const int COLUMNS)
 {
     int value;
     std::cout << "Cycle shift right" << std::endl;
@@ -920,38 +837,105 @@ int** ShiftRight(int** array, const int sizeArrayRows, const int sizeArrayColumn
 
     for (int k = 0; k < value; k++)
     {
-        int buffer = array[sizeArrayRows-1][sizeArrayColumn - 1];
-
-        for (int i = sizeArrayRows - 1; i > 0; i--)
+        for (int i = ROWS - 1; i > 0; i--)
         {
-            for (int j = sizeArrayColumn-1 ; j >= 0; j--)
+            int buffer = array[i][COLUMNS - 1];
+
+            for (int j = COLUMNS - 1; j >= 0; j--)
             {
                 array[i][j] = array[i][j - 1];
             }
-            array[i][0] = array[i - 1][sizeArrayColumn - 1];
-           
+            array[i][0] = buffer;
         }
-        array[0][0] = buffer;
     }
 
     return array;
-    
 }
 
-int** Sort(int** array, const int sizeArrayRows, const int sizeArrayColumn)  
+double** ShiftRight(double** array, const int ROWS, const int COLUMNS)
 {
+    int value;
+    std::cout << "Cycle shift right" << std::endl;
+    std::cout << "Enter the number if items : ";  std::cin >> value;
 
+    for (int k = 0; k < value; k++)
+    {
+        for (int i = ROWS - 1; i > 0; i--)
+        {
+            int buffer = array[i][COLUMNS - 1];
+
+            for (int j = COLUMNS - 1; j >= 0; j--)
+            {
+                array[i][j] = array[i][j - 1];
+            }
+            array[i][0] = buffer;
+        }
+    }
+
+    return array;
+}
+
+float** ShiftRight(float** array, const int ROWS, const int COLUMNS)
+{
+    int value;
+    std::cout << "Cycle shift right" << std::endl;
+    std::cout << "Enter the number if items : ";  std::cin >> value;
+
+    for (int k = 0; k < value; k++)
+    {
+        for (int i = ROWS - 1; i > 0; i--)
+        {
+            int buffer = array[i][COLUMNS - 1];
+
+            for (int j = COLUMNS - 1; j >= 0; j--)
+            {
+                array[i][j] = array[i][j - 1];
+            }
+            array[i][0] = buffer;
+        }
+    }
+
+    return array;
+}
+
+
+int** ShiftRight(int** array, const int ROWS, const int COLUMNS)
+{
+    int value;
+    std::cout << "Cycle shift right" << std::endl;
+    std::cout << "Enter the number if items : ";  std::cin >> value;
+
+    int sizeArray = 5;
+    for (int k = 0; k < value; k++)
+    {
+        for (int i = sizeArray - 1; i > 0; i--)
+        {
+            int buffer = array[i][sizeArray - 1];
+
+            for (int j = sizeArray - 1; j >= 0; j--)
+            {
+                array[i][j] = array[i][j - 1];
+            }
+            array[i][0] = buffer;
+        }
+    }
+
+    return array;
+}
+
+
+int** Sort(int** array, const int ROWS, const int COLUMNS)
+{
     int emptyValue;
 
-    for (int k = 0; k < sizeArrayRows; ++k) {
+    for (int k = 0; k < ROWS; ++k) {
 
-        for (int l = 0; l < sizeArrayColumn; ++l)
+        for (int l = 0; l < COLUMNS; ++l)
         {
-            for (int i = 0; i < sizeArrayColumn; ++i)
+            for (int i = 0; i < ROWS; ++i)
             {
-                for (int j = 0; j < sizeArrayColumn; ++j)
+                for (int j = 0; j < COLUMNS; ++j)
                 {
-
                     if (array[i][j] > array[k][l])
                     {
                         emptyValue = array[i][j];
@@ -965,20 +949,18 @@ int** Sort(int** array, const int sizeArrayRows, const int sizeArrayColumn)
     return array;
 }
 
-double** Sort(double** array, const int sizeArrayRows, const int sizeArrayColumn) 
+double** Sort(double** array, const int ROWS, const int COLUMNS)
 {
-
     double emptyValue;
 
-    for (int k = 0; k < sizeArrayRows; ++k) {
+    for (int k = 0; k < ROWS; ++k) {
 
-        for (int l = 0; l < sizeArrayColumn; ++l)
+        for (int l = 0; l < COLUMNS; ++l)
         {
-            for (int i = 0; i < sizeArrayRows; ++i)
+            for (int i = 0; i < ROWS; ++i)
             {
-                for (int j = 0; j < sizeArrayColumn; ++j)
+                for (int j = 0; j < COLUMNS; ++j)
                 {
-
                     if (array[i][j] > array[k][l])
                     {
                         emptyValue = array[i][j];
@@ -993,20 +975,19 @@ double** Sort(double** array, const int sizeArrayRows, const int sizeArrayColumn
     return array;
 }
 
-float** Sort(float** array, const int sizeArrayRows, const int sizeArrayColumn)  
+float** Sort(float** array, const int ROWS, const int COLUMNS)
 {
 
     float emptyValue;
 
-    for (int k = 0; k < sizeArrayRows; ++k) {
+    for (int k = 0; k < ROWS; ++k) {
 
-        for (int l = 0; l < sizeArrayColumn; ++l)
+        for (int l = 0; l < COLUMNS; ++l)
         {
-            for (int i = 0; i < sizeArrayRows; ++i)
+            for (int i = 0; i < ROWS; ++i)
             {
-                for (int j = 0; j < sizeArrayColumn; ++j)
+                for (int j = 0; j < COLUMNS; ++j)
                 {
-
                     if (array[i][j] > array[k][l])
                     {
                         emptyValue = array[i][j];
@@ -1021,11 +1002,11 @@ float** Sort(float** array, const int sizeArrayRows, const int sizeArrayColumn)
     return array;
 }
 
-void UinqueRand(int** array, int minValue, int maxValue, const int sizeArrayRows, const int sizeArrayColumn) //
+int** UinqueRand(int** array, int minValue, int maxValue, const int ROWS, const int COLUMNS) //
 {
-    const int const SIZE = sizeArrayRows * sizeArrayColumn;
-    
-    int* rewSize=new int [SIZE];
+    const int const SIZE = ROWS * COLUMNS;
+
+    int* rewSize = new int[SIZE];
 
     bool hasalraedy;
     int randomValue;
@@ -1037,10 +1018,9 @@ void UinqueRand(int** array, int minValue, int maxValue, const int sizeArrayRows
     {
         hasalraedy = false;
         randomValue = minValue + rand() % int(maxValue - minValue);
-       
+
         for (int j = 0; j < i; j++)
         {
-
             if (rewSize[j] == randomValue)
             {
                 hasalraedy = true;
@@ -1055,38 +1035,118 @@ void UinqueRand(int** array, int minValue, int maxValue, const int sizeArrayRows
         }
 
     }
-   
-    for (int i = 0; i < sizeArrayRows; i++)
+
+    for (int i = 0; i < ROWS; i++)
     {
-        for (int j = 0; j < sizeArrayColumn; j++)
+        for (int j = 0; j < COLUMNS; j++)
         {
             array[i][j] = rewSize[cyceleValue];
-           
             cyceleValue++;
         }
     }
 
-    for (int i = 0; i < sizeArrayRows; i++)
-    {
-        for (int j = 0; j < sizeArrayColumn; j++)
-        {
-            std::cout << array[i][j] << '\t';
-        }
-        std::cout << std::endl;
-    }
+    return array;
 }
 
-
-void Search(int** array, const int sizeArrayRows, const int sizeArrayColumn)  //íàõîäèò â ìàññèâå ïîâòîðÿþøèåñÿ çíà÷åíèÿ, âûâîäèò èõ íà ýêðàí
+double** UinqueRand(double** array, int minValue, int maxValue, const int ROWS, const int COLUMNS) //
 {
-    int type = 0;
-    for (int i = 0; i < sizeArrayRows; i++)
+    const int const SIZE = ROWS * COLUMNS;
+
+    double* rewSize = new double[SIZE];
+
+    bool hasalraedy;
+    double randomValue;
+    int cyceleValue = 0;
+
+    srand(time(NULL));
+
+    for (int i = 0; i < SIZE; )
     {
-        for (int j = 0; j < sizeArrayColumn; j++)
+        hasalraedy = false;
+        randomValue = minValue + rand() % int(maxValue - minValue);
+
+        for (int j = 0; j < i; j++)
         {
-            for (int l = i; l < sizeArrayRows; l++)
+            if (rewSize[j] == randomValue)
             {
-                for (int k = j + 1; k < sizeArrayColumn; k++)
+                hasalraedy = true;
+                break;
+            }
+        }
+
+        if (!hasalraedy)
+        {
+            rewSize[i] = randomValue;
+            i++;
+        }
+    }
+
+    for (int i = 0; i < ROWS; i++)
+    {
+        for (int j = 0; j < COLUMNS; j++)
+        {
+            array[i][j] = rewSize[cyceleValue];
+            cyceleValue++;
+        }
+    }
+
+    return array;
+}
+
+float** UinqueRand(float** array, int minValue, int maxValue, const int ROWS, const int COLUMNS) //
+{
+    const int const SIZE = ROWS * COLUMNS;
+
+    float* rewSize = new float[SIZE];
+
+    bool hasalraedy;
+    float randomValue;
+    int cyceleValue = 0;
+
+    srand(time(NULL));
+
+    for (int i = 0; i < SIZE; )
+    {
+        hasalraedy = false;
+        randomValue = minValue + rand() % int(maxValue - minValue);
+
+        for (int j = 0; j < i; j++)
+        {
+            if (rewSize[j] == randomValue)
+            {
+                hasalraedy = true;
+                break;
+            }
+        }
+
+        if (!hasalraedy)
+        {
+            rewSize[i] = randomValue;
+            i++;
+        }
+    }
+
+    for (int i = 0; i < ROWS; i++)
+    {
+        for (int j = 0; j < COLUMNS; j++)
+        {
+            array[i][j] = rewSize[cyceleValue];
+            cyceleValue++;
+        }
+    }
+
+    return array;
+}
+
+void Search(int** array, const int ROWS, const int COLUMNS)  //íàõîäèò â ìàññèâå ïîâòîðÿþøèåñÿ çíà÷åíèÿ, âûâîäèò èõ íà ýêðàí
+{
+    for (int i = 0; i < ROWS; i++)
+    {
+        for (int j = 0; j < COLUMNS; j++)
+        {
+            for (int l = i; l < ROWS; l++)
+            {
+                for (int k = j + 1; k < COLUMNS; k++)
 
                     if (array[i][j] == array[l][k])
                     {
@@ -1097,35 +1157,35 @@ void Search(int** array, const int sizeArrayRows, const int sizeArrayColumn)  //
     }
 }
 
-void Search(double** array, const int sizeArrayRows, const int sizeArrayColumn)  //íàõîäèò â ìàññèâå ïîâòîðÿþøèåñÿ çíà÷åíèÿ, âûâîäèò èõ íà ýêðàí
+void Search(double** array, const int ROWS, const int COLUMNS)  //íàõîäèò â ìàññèâå ïîâòîðÿþøèåñÿ çíà÷åíèÿ, âûâîäèò èõ íà ýêðàí
 {
-    for (int i = 0; i < sizeArrayRows; i++)
+    for (int i = 0; i < ROWS; i++)
     {
-        for (int j = 0; j < sizeArrayColumn; j++)
+        for (int j = 0; j < COLUMNS; j++)
         {
-            for (int l = i; l < sizeArrayRows; l++)
+            for (int l = i; l < ROWS; l++)
             {
-                for (int k = j + 1; k < sizeArrayColumn; k++)
-                    
+                for (int k = j + 1; k < COLUMNS; k++)
+
                     if (array[i][j] == array[l][k])
                     {
                         std::cout << "mass[" << i << "][ " << j << "] == mass[ " << l << "][" << k << "]" << array[i][j] << std::endl;
-                    } 
+                    }
             }
         }
     }
 }
 
-void Search(float** array, const int sizeArrayRows, const int sizeArrayColumn)  //íàõîäèò â ìàññèâå ïîâòîðÿþøèåñÿ çíà÷åíèÿ, âûâîäèò èõ íà ýêðàí
+void Search(float** array, const int ROWS, const int COLUMNS)  //íàõîäèò â ìàññèâå ïîâòîðÿþøèåñÿ çíà÷åíèÿ, âûâîäèò èõ íà ýêðàí
 {
-    for (int i = 0; i < sizeArrayRows; i++)
+    for (int i = 0; i < ROWS; i++)
     {
-        for (int j = 0; j < sizeArrayColumn; j++)
+        for (int j = 0; j < COLUMNS; j++)
         {
-            for (int l = i; l < sizeArrayRows; l++)
+            for (int l = i; l < ROWS; l++)
             {
-                for (int k = j + 1; k < sizeArrayColumn; k++)
-                    
+                for (int k = j + 1; k < COLUMNS; k++)
+
                     if (array[i][j] == array[l][k])
                     {
                         std::cout << "mass[" << i << "][ " << j << "] == mass[ " << l << "][" << k << "]" << array[i][j] << std::endl;
