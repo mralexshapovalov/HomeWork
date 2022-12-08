@@ -1157,7 +1157,7 @@ void Search(int** array, const int ROWS, const int COLUMNS)  //íàõîäèò â
     }
 }
 
-void Search(double** array, const int ROWS, const int COLUMNS)  //íàõîäèò â ìàññèâå ïîâòîðÿþøèåñÿ çíà÷åíèÿ, âûâîäèò èõ íà ýêðàí
+void Search(double** array, const int ROWS, const int COLUMNS)  
 {
     for (int i = 0; i < ROWS; i++)
     {
@@ -1176,7 +1176,7 @@ void Search(double** array, const int ROWS, const int COLUMNS)  //íàõîäèò
     }
 }
 
-void Search(float** array, const int ROWS, const int COLUMNS)  //íàõîäèò â ìàññèâå ïîâòîðÿþøèåñÿ çíà÷åíèÿ, âûâîäèò èõ íà ýêðàí
+void Search(float** array, const int ROWS, const int COLUMNS)  
 {
     for (int i = 0; i < ROWS; i++)
     {
